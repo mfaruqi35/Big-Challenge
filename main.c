@@ -12,8 +12,12 @@ void ignoreInputBuffer(){
 }
 
 void getEnterKey(){
+#ifdef _WIN32
+    system("pause");
+#else
     printf("\n<Tekan enter untuk lanjut>\n");
     ignoreInputBuffer();
+#endif
 }
 
 int main(){
