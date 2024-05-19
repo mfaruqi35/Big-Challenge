@@ -16,3 +16,4 @@ typedef struct {
 } Final;
 
 void writeBinaryFile (Data datas[], int );
+int Scoring(char c);
