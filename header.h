@@ -16,4 +16,11 @@ typedef struct {
 } Final;
 
 void writeBinaryFile (Data datas[], int );
-int Scoring(char c);
+int Scoring(const char *str);
+void Header();
+void Clear_System();
+void Pause();
+void ignoreInputBuffer();
+void getEnterKey();
+
+
