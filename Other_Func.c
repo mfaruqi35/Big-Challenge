@@ -11,7 +11,7 @@
 #endif
 
 // Fungsi untuk menghitung total skor dari sebuah string
-int Scoring(const char *str) {
+int Scoring(char *token ) {
     int skor = 0;
     int score[] = {
         1, 70, 71, 72, 2, 73, 74, 75, 3, 76, // a-j
@@ -19,8 +19,8 @@ int Scoring(const char *str) {
         84, 85, 86, 87, 88, 89               // u-z
     };
 
-    for (int i = 0; str[i] != '\0'; i++) {
-        char c = tolower(str[i]);
+    for (int i = 0; token[i] != '\0'; i++) {
+        char c = tolower(token[i]);
         
         // Periksa apakah karakter adalah huruf kecil
         if (c >= 'a' && c <= 'z') {

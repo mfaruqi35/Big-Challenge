@@ -56,16 +56,17 @@ int main() {
                                     Clear_System();
                                     printf("    \nOpsi pertama\n");
                                     Pause();
-                                    fclose(ifp);
+                                    
                                     break;
 
                             case 2:
                                     Clear_System();
                                     printf("    \nOpsi Kedua\n");
                                     Pause();
-                                    fclose(ifp);
+                                    
                                     break;
                             case 3: 
+                                    fclose(ifp);
                                      break;
                             default:
                                     printf("\n    Mohon Input Dengan Benar\n");
