@@ -29,4 +29,5 @@ void Pause();
 void ignoreInputBuffer();
 void getEnterKey();
 int hitungChar(int karakter, char *filename);
+void bubbleSort(Data datas[],int word);
 

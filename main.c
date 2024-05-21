@@ -54,9 +54,6 @@ int main() {
 
                         //Input string dari text file ke array
                         inputTextfile(filename, line, panjangstr, string);
-                        // for(int i = 0; i< line; i++){
-                        //     printf("%s\n", string[i]);
-                        // }
 
                         kata = hitungKata(string);
                         printf("%d\n", kata);
@@ -65,39 +62,12 @@ int main() {
                         
                         processString(string);
                         strtokCharacter(token, string, awal);
+                        bubbleSort(awal, kata);
 
                         for (int i = 0; i < kata; i++) {
                             printf("Kata: %s, Skor: %.2lf, Panjang: %d\n", awal[i].kata, awal[i].skor, awal[i].panjangKata);
                         }
-                        // for(int i = 0; i < line ; i++){
-                        //     kata += hitungKata(string[i]);
-                        // }
-                        // Data data[kata];
 
-                        // //Proses menghilangkan tanda baca dan membesarkan huruf pada awal kata
-                        // for (int i = 0; i < line; i++) {
-                        //     processString(string[i]);
-                        //     strtokCharacter(token, string[i], &data[i*panjangstr]);
-                        // }
-
-                        // for(int i = 0; i < kata; i++){
-                        //     printf("%s\n", string[i]);
-                        // }
-
-
-
-                        // for (int i = 0; i < kata; i++) {
-                        // printf("Kata: %s, Skor: %.2lf, Panjang: %d\n", data[i].kata, data[i].skor, data[i].panjangKata);
-                        // }
-                        //Menghitung banyaknya kata yang ada di array 
-
-                        //Deklarasi struct untuk menghimpun kata, panjang kata, dan skor
-                        // Data data[kata];
-
-                        //Proses scoring
-                        // strtokCharacter(token, string, data);
-
-        
          //------------------- Menu kedua ----------------------------------------------------
                     
                         do {
