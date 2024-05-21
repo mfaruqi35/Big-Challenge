@@ -1,88 +1,154 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
+
 #include "header.h"
 
-void ignoreInputBuffer(){
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF) {   // membersihkan buffer input
-        continue;
-    }
-}
+int main() {
 
-void getEnterKey(){
-    printf("\n<Tekan enter untuk lanjut>\n");
-    ignoreInputBuffer();
-}
-
-int main(){
-    system("cls");
-
-    int option;
-    int is_continue = 1;
-    int option1_selected = 0;
-
+    int karakter = 0;
     int line = 0;
-    int length = 0;
+    int panjangstr = 0;
     int kata = 0;
-
-    Data contoh[kata];
-
+    int Opsi_1 = 0;
+    int Opsi_2 = 0;
     FILE *ifp;
     char filename[20];
-    printf("Masukkan nama file input (txt): ");
-    scanf("%s", filename);
-    ifp = fopen(filename, "r");
-    if(ifp == NULL){
-        printf("Error, tidak dapat membuka file...\n");
-        exit(1);
-    }   
+    char *token;
 
-    //Program pemrosesan data
     
-    fclose(ifp);
     
-    label_input:
-    system("cls");
-    printf("Selamat Datang di Big challenge\n\n");
-    printf("(1) Masukan ke binary file\n");
-    printf("(2) Baca dari binary file\n");
-    printf("(3) Keluar\n");
-    printf("Masukkan pilihan anda: ");
-    scanf("%d", &option);
-    ignoreInputBuffer();
-    
-    if(option == 1){
-        printf("program write to file binary\n");
-        writeBinaryFile(contoh, kata);
-        getEnterKey();
-        goto label_input;
-    }
-    else if(option == 2){
-            if(option1_selected){
-                printf("program read file binary\n");
-                //read binary and print to terminal
-                getEnterKey();
-                goto label_input;
-            }
-            else {
-                printf("Pilih opsi satu terlebih dahulu");
-                getEnterKey();
-                goto label_input; 
-            }
-    //     
-    }
-    else if(option == 3){
-        printf("Program selesai, Sampai jumpa");
-    }
-    else {
-        printf("input tidak valid, silahkan masukkan input ulang\n");
-        getEnterKey();
-        goto label_input;
-    }
+
+    // Menu Utama
+    do {
+        Clear_System();
+        Header();
+        printf("    Sebelum Memulai, Silahkan input nama file ( File.txt )\n\n");
+        printf("      [1] Input file text\n");
+        printf("      [2] exit\n\n");
+        printf("    Pilihan Anda (1/2) : ");
+        scanf("%d", &Opsi_1);
+        ignoreInputBuffer();
+
+        if (Opsi_1 == 1) {
+
+            int Berhasil = 0; 
+            Clear_System();
+            Header();
+            printf("    Masukkan nama file input ( File.txt ) : ");
+            scanf("%s", filename);
+            ifp = fopen(filename, "r");
+            if (ifp == NULL) {
+                    printf("    File tidak ditemukan, Mohon tunggu ...\n");
+                    Pause();
+                    continue;;
+                } else {
+
+                        line = hitungBaris(line, filename);
+                        printf("%d\n",line);
+                        panjangstr = hitungPanjang(panjangstr, filename);
+                        printf("%d\n", panjangstr);
+
+                        //Menghitung banyak karakter untuk dijadikan sebagai size array of char string 
+                        karakter = hitungChar(karakter, filename);  
+
+                        //Deklarasi array string
+                        char string[karakter];
+
+                        //Input string dari text file ke array
+                        inputTextfile(filename, line, panjangstr, string);
+                        // for(int i = 0; i< line; i++){
+                        //     printf("%s\n", string[i]);
+                        // }
+
+                        kata = hitungKata(string);
+                        printf("%d\n", kata);
+
+                        Data awal[kata];
+                        
+                        processString(string);
+                        strtokCharacter(token, string, awal);
+
+                        for (int i = 0; i < kata; i++) {
+                            printf("Kata: %s, Skor: %.2lf, Panjang: %d\n", awal[i].kata, awal[i].skor, awal[i].panjangKata);
+                        }
+                        // for(int i = 0; i < line ; i++){
+                        //     kata += hitungKata(string[i]);
+                        // }
+                        // Data data[kata];
+
+                        // //Proses menghilangkan tanda baca dan membesarkan huruf pada awal kata
+                        // for (int i = 0; i < line; i++) {
+                        //     processString(string[i]);
+                        //     strtokCharacter(token, string[i], &data[i*panjangstr]);
+                        // }
+
+                        // for(int i = 0; i < kata; i++){
+                        //     printf("%s\n", string[i]);
+                        // }
 
 
+
+                        // for (int i = 0; i < kata; i++) {
+                        // printf("Kata: %s, Skor: %.2lf, Panjang: %d\n", data[i].kata, data[i].skor, data[i].panjangKata);
+                        // }
+                        //Menghitung banyaknya kata yang ada di array 
+
+                        //Deklarasi struct untuk menghimpun kata, panjang kata, dan skor
+                        // Data data[kata];
+
+                        //Proses scoring
+                        // strtokCharacter(token, string, data);
+
+        
+         //------------------- Menu kedua ----------------------------------------------------
+                    
+                        do {
+                            //Clear_System();
+                            Header();
+                            printf("      ------------( Menu / Option )------------\n\n");
+                            printf("      [1] Masukkan Data Ke File Binary\n");
+                            printf("      [2] Tampilkan Data Dari Binary\n");
+                            printf("      [3] Kembali\n\n");
+                            printf("    Pilihan Anda (1-3) : ");
+                            scanf("%d", &Opsi_2);
+                            ignoreInputBuffer();
+
+                            switch(Opsi_2) {
+
+                            case 1:
+                                    Clear_System();
+                                    printf("    \nOpsi pertama\n");
+                                    Pause();
+                                    
+                                    break;
+
+                            case 2:
+                                    Clear_System();
+                                    printf("    \nOpsi Kedua\n");
+                                    Pause();
+                                    
+                                    break;
+                            case 3: 
+                                    fclose(ifp);
+                                     break;
+                            default:
+                                    printf("\n    Mohon Input Dengan Benar\n");
+                                    Pause();
+                                    fclose(ifp);
+                                    break;
+                            }
+
+                        } while (Opsi_2 != 3); 
+                }
+            
+
+
+        } else if (Opsi_1 == 2) {
+            printf("\n    Terima Kasih :)\n");
+        } else {
+            printf("\nMohon Input Dengan Benar\n");
+            Pause();
+        }
+    } while (Opsi_1 != 2);
 
     return 0;
 }
+
