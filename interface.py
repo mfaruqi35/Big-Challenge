@@ -28,7 +28,7 @@ def hitung():
 
 # Tkinter Setup
 root = tk.Tk()
-root.title("Kalkulator Regula Falsi")
+root.title("Kalkulator Falsi")
 
 tk.Label(root, text="Masukkan Fungsi:").pack()
 entry_fungsi = tk.Entry(root)
